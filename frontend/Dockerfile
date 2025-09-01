@@ -3,10 +3,10 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
-COPY inventory/package*.json ./
+COPY package.json package-lock.json ./
 RUN npm install
 
-COPY inventory/ ./
+COPY . .
 RUN npm run build -- --output-path=dist
 
 # Use Nginx to serve the built Angular app

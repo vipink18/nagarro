@@ -25,6 +25,17 @@ public class Item implements Serializable {
     @Column(nullable = false)
     private Double price;
 
+    // No-args constructor
+    public Item() {}
+
+    // Constructor with all fields
+    public Item(Long id, String name, Integer quantity, Double price) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

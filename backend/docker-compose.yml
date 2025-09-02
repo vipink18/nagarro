@@ -36,11 +36,13 @@ services:
     build:
       context: .././frontend
       dockerfile: Dockerfile
-    container_name: angular-app
+    container_name: inventory-app
     ports:
       - "80:80"
     depends_on:
       - backend
+      - redis
+      
 
 
 volumes:

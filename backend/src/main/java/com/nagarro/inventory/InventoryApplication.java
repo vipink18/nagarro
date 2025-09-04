@@ -7,9 +7,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.boot.CommandLineRunner;
 import com.nagarro.inventory.repository.ItemRepository;
 import com.nagarro.inventory.model.Item;
+import org.springframework.retry.annotation.EnableRetry;
 
 @EnableCaching
 @SpringBootApplication
+//@EnableRetry
 public class InventoryApplication {
 
 	public static void main(String[] args) {

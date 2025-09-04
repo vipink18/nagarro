@@ -19,6 +19,14 @@ WORKDIR /app
 # Copy the built jar from the build stage
 COPY --from=build /app/target/*.jar app.jar
 
+COPY wait-for-redis.sh .
+
+RUN chmod +x wait-for-redis.sh
+
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["./wait-for-redis.sh"]
+
+#EXPOSE 8080
+#
+#ENTRYPOINT ["java", "-jar", "app.jar"]

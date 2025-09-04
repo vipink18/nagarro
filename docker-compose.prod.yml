@@ -8,8 +8,6 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
   redis:
     image: redis:7
@@ -17,29 +15,18 @@ services:
       - "6379:6379"
 
   backend:
-    image: vipink18/inventory-backend:latest   # <-- from Docker Hub
+    image: vipink18/inventory-backend:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: docker   # 👈 or prod if you create prod profile
+    ports:
+      - "8080:8080"
     depends_on:
       - postgres
       - redis
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/inventorydb
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
-      SPRING_REDIS_HOST: redis
-      SPRING_REDIS_PORT: 6379
-    ports:
-      - "8080:8080"
-    restart: always
 
   frontend:
-    image: vipink18/inventory-frontend:latest  # <-- from Docker Hub
-    container_name: inventory-app
+    image: vipink18/inventory-frontend:latest
     ports:
       - "80:80"
     depends_on:
       - backend
-      - redis
-
-volumes:
-  postgres_data:
-  redis_data:

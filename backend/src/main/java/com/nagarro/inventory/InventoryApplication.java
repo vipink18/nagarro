@@ -2,11 +2,13 @@ package com.nagarro.inventory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.boot.CommandLineRunner;
 import com.nagarro.inventory.repository.ItemRepository;
 import com.nagarro.inventory.model.Item;
 
+@EnableCaching
 @SpringBootApplication
 public class InventoryApplication {
 
